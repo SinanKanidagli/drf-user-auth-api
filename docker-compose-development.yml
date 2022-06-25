@@ -1,0 +1,24 @@
+version: '3'
+
+services:
+  main:
+    build:
+      dockerfile: ./compose/Dockerfile
+      context: .
+    command: >
+      sh -c "python manage.py wait_for_db &&
+             python manage.py makemigrations &&
+             python manage.py migrate &&
+             python manage.py runserver_plus 0.0.0.0:8000"
+    ports:
+      - 8000:8000
+    volumes:
+      - ./apps/main:/app
+    env_file:
+      - ./.envs/.development/.main
+    depends_on:
+      - db
+  db:
+    image: postgres:13-alpine
+    env_file:
+      - ./.envs/.development/.postgres

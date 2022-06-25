@@ -1,0 +1,12 @@
+# Django
+django==4.0
+psycopg2==2.9.3
+cryptography==36.0.1
+django-allauth==0.48.0
+
+# Hasher
+argon2-cffi==21.3.0
+
+# Django REST Framework
+djangorestframework==3.13.1
+django-cors-headers==3.11.0
